@@ -29,7 +29,7 @@ public class AnimScript : MonoBehaviour
       if(Input.GetKey(KeyCode.W)){
          //rb.velocity = new Vector3(0,0,0);
          this.transform.Translate(0,0,0.25f);
-         anim.SetBool("isWalking",true);
+         anim.SetBool("isRunning",true);
          anim.SetBool("isIdle",false);
          if(Input.GetKey(KeyCode.D)){this.transform.Rotate(0,1.8f,0);}
          else if(Input.GetKey(KeyCode.A)){this.transform.Rotate(0,-1.8f,0);}
@@ -47,7 +47,7 @@ public class AnimScript : MonoBehaviour
       }*/
       else{
          anim.SetBool("isIdle",true);
-         anim.SetBool("isWalking",false);
+         anim.SetBool("isRunning",false);
       }
     }
 }

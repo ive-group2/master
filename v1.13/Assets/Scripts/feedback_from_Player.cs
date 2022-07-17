@@ -6,11 +6,14 @@ namespace MZU{
     public class feedback_from_Player : MonoBehaviour
     {
          public AudioClip ac2;
-         G_GameScene G = new G_GameScene();
-         Dragon_Anim_Script D = new Dragon_Anim_Script();
+         G_GameScene G;
+         Dragon_Anim_Script D;
 
          void Awake(){
+            G=Finder.FindGO("Player").AddComponent<G_GameScene>();
+            D=Finder.FindGO("Player").AddComponent<Dragon_Anim_Script>();
             D.anim = Finder.FindAnimator("Dragon");
+
          } 
 
          void OnCollisionEnter(Collision collision) {
@@ -30,6 +33,14 @@ namespace MZU{
             if (collision.gameObject.name=="Power3"){ G.playerCollectPowerUp("Power3"); }
             if (collision.gameObject.name=="Power4"){ G.playerCollectPowerUp("Power4"); }
 
+            if (collision.gameObject.name=="TriggerBat1"){ Finder.FindRigidbody("Bat1").AddForce(0,0,-20f,ForceMode.VelocityChange);}
+            if (collision.gameObject.name=="TriggerBat2"){ Finder.FindRigidbody("Bat2").AddForce(0,0,-20f,ForceMode.VelocityChange); }
+            if (collision.gameObject.name=="TriggerBat3"){ Finder.FindRigidbody("Bat3").AddForce(0,0,-20f,ForceMode.VelocityChange); }
+
+            if (collision.gameObject.name=="Bat1"){ G.playerHitStone(); }
+            if (collision.gameObject.name=="Bat2"){ G.playerHitStone(); }
+            if (collision.gameObject.name=="Bat3"){ G.playerHitStone(); }
+
             if (collision.gameObject.name=="Trigger"){ D.SMT_Fly();
                         Finder.FindAudio("Canvas: GM (HUD)").Pause();
                         Finder.FindAudio("Canvas: GM (HUD)").clip=ac2;
@@ -37,6 +48,8 @@ namespace MZU{
                         Finder.FindText("Power Bar").text ="Granzon approaches you rapidly!";
                         //Time.timeScale = 0;
                         G_GameScene.flag=2;}
+
+            
         }
     }
 }
