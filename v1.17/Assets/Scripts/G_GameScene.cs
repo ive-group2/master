@@ -76,14 +76,16 @@ namespace MZU
                     }
                     if(flag==1){
                         if(IsGranzonApproached()){
-                        Finder.FindText("Power Bar").text ="Granzon approaches you rapidly!";
+                        Finder.FindText("Power Bar").text ="Dragon approaches you rapidly!";
                         Time.timeScale = 0;
                         flag=2;
                         }
                     }
                     if (flag==2 && Input.GetKeyDown(KeyCode.Return)){
                         StopCoroutine("Timer");
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+                        SceneManager.UnloadScene("Game");
+                        SceneManager.LoadScene("BattleScene_MHS2");
+                        
                     }
                     if (Input.GetKeyDown(KeyCode.Escape)){
                         Application.Quit();
